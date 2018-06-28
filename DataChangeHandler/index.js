@@ -94,7 +94,7 @@ function createAuditRecord(record, attribute, oldValue, newValue, sequence)
             eventtype: record.eventName,
             region: record.awsRegion,
             account: record.eventSourceARN.split(':')[4],
-            table: record.eventSourceARN.split(':')[5].split('/')[1]  // arn:aws:dynamodb:us-west-2:989469592528:table/user-profile/stream/2018-06-23T12:52:28.632
+            table: record.eventSourceARN.split(':')[5].split('/')[1] 
         };
         
         Object.keys(record.dynamodb.Keys).forEach(function(key) {

@@ -18,3 +18,44 @@ Resources:
       Description: ''
       MemorySize: 128
       Timeout: 15
+  Deliverystream:
+    Type: 'AWS::KinesisFirehose::DeliveryStream'
+    Properties:
+      Policies:
+        - PolicyName: DeliverToBucketPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 's3:*'
+                Resource:
+                  - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}'
+                  - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}*'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: firehose.amazonaws.com
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId':
+                  Ref: 'AWS::AccountId'
+      ExtendedS3DestinationConfiguration:
+        BucketARN:
+          'Fn::Join':
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: s3DataBucket
+        BufferingHints:
+          IntervalInSeconds: '60'
+          SizeInMBs: '50'
+        CompressionFormat: GZIP
+        Prefix: /
+        RoleARN:
+          'Fn::GetAtt':
+            - deliveryRole
+            - Arn

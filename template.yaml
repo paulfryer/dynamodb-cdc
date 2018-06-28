@@ -10,3 +10,11 @@ Resources:
       Description: ''
       MemorySize: 128
       Timeout: 15
+  DataChangeHandler:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: DataChangeHandler/index.handler
+      Runtime: nodejs8.10
+      Description: ''
+      MemorySize: 128
+      Timeout: 15

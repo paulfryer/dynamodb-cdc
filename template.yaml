@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
-Description: An AWS Serverless Specification template describing your function.
+Description: Change Data Capture for DynamoDB
 Resources:
   AddPartition:
     Type: 'AWS::Serverless::Function'
@@ -21,29 +21,6 @@ Resources:
   Deliverystream:
     Type: 'AWS::KinesisFirehose::DeliveryStream'
     Properties:
-      Policies:
-        - PolicyName: DeliverToBucketPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - 's3:*'
-                Resource:
-                  - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}'
-                  - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}*'
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Sid: ''
-            Effect: Allow
-            Principal:
-              Service: firehose.amazonaws.com
-            Action: 'sts:AssumeRole'
-            Condition:
-              StringEquals:
-                'sts:ExternalId':
-                  Ref: 'AWS::AccountId'
       ExtendedS3DestinationConfiguration:
         BucketARN:
           'Fn::Join':
@@ -59,3 +36,35 @@ Resources:
           'Fn::GetAtt':
             - deliveryRole
             - Arn
+  s3DataBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName:
+        'Fn::Sub': 'dynamodb-cdc-${AWS::AccountId}-${AWS::Region}'
+  deliveryRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: firehose.amazonaws.com
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId':
+                  Ref: 'AWS::AccountId'
+      Policies:
+        - PolicyName: CrawlBucketPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 's3:*'
+                Resource:
+                  - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}'
+                  - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}*'
+                  

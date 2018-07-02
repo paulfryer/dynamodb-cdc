@@ -20,5 +20,14 @@ From Authena you can submit queries see all changes in the audit log, or build v
 ![Glue Schema for CDC Table](/docs/userChangesQuery.png)
 
 
-Now that you can query the full audit/event log you can start to join information to gether if you need recreate a view of what the table looks like with latest values for example.
+Now that you can query the full audit/event log you can start to join information to gether if you need recreate a view of what the table looks like with latest values for example. Urn this query to create a view that returns the latest values.
+[GetLastestValue.sql](/docs/latestvalues.sql)
 
+Next you can build a table specific view like this:
+![UserProfile.sql](/docs/user-view-profile.sql)
+
+Now you can query table specific views like the "user-profile" one for example:
+
+![Querying User Profile View](/docs/filteringLatestValuesOnView.png)
+
+Warning: these views don't take the Partition Key into the query, which they should if you are going to get servious about implementing this pattern. Also this is highly experimenatal and has not been tested at scale, so performance testing is critical here.

@@ -1,11 +1,11 @@
 {
     "GetUserPartitions": {
         "lambda": {
-            "Account": 989469592528,
+            "Account": 1234567,
             "Region": "us-west-2",
             "Table": "user-profile",
             "Key": "paul",
-            "OutputLocation": "s3://dynamodb-cdc-989469592528-us-west-2/dynamodb-cdc/"
+            "OutputLocation": "s3://dynamodb-cdc-1234567-us-west-2/dynamodb-cdc/"
         }
     },
     "": {

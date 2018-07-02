@@ -9,3 +9,7 @@ As new parteqt files are dropped on S3, they will be added to the glue schema by
 
 From Authena you can submit queries see all changes in the audit log, or build views to reconstruct the current values for querying.
 
+
+### Glue Schema for CDC Table
+
+![Glue Schema for CDC Table](/docs/changeSchema.png)

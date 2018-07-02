@@ -17,4 +17,4 @@ From Authena you can submit queries see all changes in the audit log, or build v
 
 ### User Change Query Example
 
-![Glue Schema for CDC Table](/docs/userChangeQuery.png)
+![Glue Schema for CDC Table](/docs/userChangesQuery.png)

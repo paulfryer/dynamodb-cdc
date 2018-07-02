@@ -13,3 +13,8 @@ From Authena you can submit queries see all changes in the audit log, or build v
 ### Glue Schema for CDC Table
 
 ![Glue Schema for CDC Table](/docs/changeSchema.png)
+
+
+### User Change Query Example
+
+![Glue Schema for CDC Table](/docs/userChangeQuery.png)

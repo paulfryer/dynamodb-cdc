@@ -67,4 +67,11 @@ Resources:
                 Resource:
                   - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}'
                   - 'Fn::Sub': 'arn:aws:s3:::${s3DataBucket}*'
-                  
+  GetUserPartitions:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: GetUserPartitions/index.handler
+      Runtime: nodejs8.10
+      Description: ''
+      MemorySize: 128
+      Timeout: 15

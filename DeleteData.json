@@ -1,0 +1,13 @@
+{
+  "StartAt": "CreateFilteredView",
+  "States": {
+    "CreateFilteredView": {
+      "Type" : "Task",
+      "Resource" : "arn:aws:states:us-west-2:123456789:function:todomak",
+      "Next" : "CreateFirehoses"
+    },
+    "CreateFirehoses" : {
+      
+    }
+  }
+}

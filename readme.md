@@ -18,3 +18,7 @@ From Authena you can submit queries see all changes in the audit log, or build v
 ### User Change Query Example
 
 ![Glue Schema for CDC Table](/docs/userChangesQuery.png)
+
+
+Now that you can query the full audit/event log you can start to join information to gether if you need recreate a view of what the table looks like with latest values for example.
+

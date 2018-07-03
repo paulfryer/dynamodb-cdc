@@ -30,4 +30,4 @@ Now you can query table specific views like the "user-profile" one for example:
 
 ![Querying User Profile View](/docs/filteringLatestValuesOnView.png)
 
-Warning: these views don't take the Partition Key into the query, which they should if you are going to get servious about implementing this pattern. Also this is highly experimenatal and has not been tested at scale, so performance testing is critical here.
+Warning: these views don't take the Partition Key into the query, which they should if using with any sizable amount of data. Also this is highly experimenatal and has not been tested at scale, so performance testing is highly reccomended.

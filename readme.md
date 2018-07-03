@@ -7,7 +7,7 @@ The Firehose will transform the rows into Parquet format.
 
 As new parteqt files are dropped on S3, they will be added to the glue schema by triggering a lambda "on S3 create" event.
 
-From Authena you can submit queries see all changes in the audit log, or build views to reconstruct the current values for querying.
+From Athena you can submit queries to see all changes in the audit log, or build views to reconstruct the current values for querying.
 
 
 ### Glue Schema for CDC Table
